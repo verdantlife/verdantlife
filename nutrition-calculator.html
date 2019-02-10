@@ -1,0 +1,146 @@
+<!--<?php
+  if(!isset($_SESSION)) {
+  	session_start();
+  }
+?>-->
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Instantly find nutrition data for hundreds of thousands of foods. Calculate and analyze recipes with this nutrition calculator." />
+    <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="styles/nutrition-calculator-stylesheet.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <title>Nutrition Calculator | Verdant Life</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110049631-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110049631-2');
+</script>
+<script title = "scrolling header">
+window.onscroll = function() {
+if(window.pageYOffset > 0) {
+  document.getElementsByClassName("topnav")[0].classList.add("topnav-scrolling");
+} else {
+  document.getElementsByClassName("topnav-scrolling")[0].classList.remove("topnav-scrolling");
+}
+}
+
+function openMenu(x) {
+  x.classList.toggle("change");
+  if(x.parentNode.classList.contains("responsive")) {
+    x.parentNode.classList.remove("responsive");
+  } else {
+    x.parentNode.classList.add("responsive");
+  }
+}
+
+</script>
+
+  </head>
+
+  <body>
+
+    <!--<?php include 'header.php';?>-->
+
+    <div id="nutrition-calc" >
+      <h1>Nutrition Calculator</h1>
+      <p style="font-size: 14pt; margin: auto; max-width: 500px; text-align:center">Search up food items and click to add them to your meal. Change serving size
+      with the dropdown menu.</p>
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" placeholder="Type a food name" autocomplete="off"
+      value title="Enter search terms" id="search-input" onkeyup="search()" name="input">
+      <table id="search-list">
+
+        <!--search results go here -->
+      </table>
+
+    </div>
+
+    <div id="item-container">
+      <h3>Items</h3>
+      <!--<span id="servings">Contains
+      <input style="width: 30px" type="number" id="num-servings" value="1" min="1" />
+      servings</span>-->
+      <table  id="item-table">
+        <col style="width: 35vw">
+        <col style="width: 5vw">
+        <!-- items will go here -->
+
+      </table>
+    </div>
+
+    <div class="traditional" id="total-nutrition-container"  >
+      <div id="nutrition-table" style="font-size: 12pt;"></div>
+      <!--Load the AJAX API-->
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <div id="nutrition-buttons">
+      <span id="toggle-rendering" class="left">
+          Format:
+          <strong>Default</strong>/
+          <a style='color: rgb(0, 139, 118)' href="javascript:toggleRendering()">Graph</a>
+        </span>
+        <!--<?php
+        if (isset($_SESSION['loggedin']) & $_SESSION['loggedin'] == true) {
+          echo '<button onclick="addMeal()">Add meal</button>';
+        } else {
+          echo '<span class="right"><a href="login.php">Log in</a>/<a href="register.php">Sign up</a> to save meal to dashboard.</span>';
+        }
+        ?>-->
+        <script src="scripts/search.js"></script>
+        <script>
+        function printWindow() {
+        	var ingredients = getIngredientList(); //get ingredients listed in decreasing order in a p element
+        	var itemContainer = document.getElementById("item-container");
+        	var save = itemContainer.innerHTML;
+        	var newItemContainer = document.createElement("div");
+        	var h3 = document.createElement("h3");
+        	h3.innerText = "Recipe";
+        	newItemContainer.appendChild(h3);
+        	var itemRows = document.getElementById("item-table").rows;
+        	var itemList = document.createElement("ul");
+        	for(var i = 0; i < itemRows.length; i++) {
+        		var item = itemRows[i].cells[0]; //the td w/ the item info
+        		var itemChildren = item.childNodes; //the children of the td
+        		var quantity = itemChildren[0].value; //the number of servings
+        		var servingSize = itemChildren[1].value; //e.g. Cup, 100g
+        		var itemName = itemChildren[3].innerText; //e.g. Kale and Spinach Salad
+        		var itemText = quantity + " " + servingSize + " of " + itemName;
+        		var tn = document.createTextNode(itemText);
+        		var li = document.createElement("li");
+        		li.appendChild(tn);
+        		itemList.appendChild(li);
+        	}
+        	newItemContainer.appendChild(itemList);
+        	itemContainer.innerHTML = newItemContainer.innerHTML;
+			document.body.insertBefore(ingredients, document.getElementById("nutrition-calc"));
+        	window.print();
+        	itemContainer.innerHTML = save;
+        	ingredients = document.getElementById("ingredients-list");
+        	ingredients.parentNode.removeChild(ingredients);
+        }
+        </script>
+        <p class="show-on-print">Nutrition report generated with www.verdantlife.org</p>
+        <a href="javascript:printWindow()" class="pdf-button">Print/generate PDF</a>
+      </div>
+    </div>
+
+
+
+    <script>
+    renderTotalNutrition();
+    window.addEventListener("resize", renderTotalNutrition);</script>
+     <!-- end of search bar -->
+    </div>
+
+    <!--<?php include 'footer.php' ?>-->
+
+  </body>
+  </html>

@@ -1,0 +1,419 @@
+<!--<?php
+  if(!isset($_SESSION)) {
+  	session_start();
+  }
+  if(isset($_SESSION['username'])){
+  header("location: dashboard.php");
+  exit;
+}
+?>-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="description" content="Track your nutrition with cutting-edge
+    software backed by scientific data. Features include a nutrition calculator and
+    statistical analysis." />
+    <title>Home | Verdant Life</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+    <link rel="canonical" href="https://www.verdantlife.org">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <style>
+    .modal {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      z-index: 130;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+      left: 0;
+      top: 0;
+      display: none;
+    }
+    .modal-content {
+      background-color: rgb(112, 255, 225);
+      margin: 15% auto;
+      width: 70%;
+      border: 1px solid #888;
+      padding: 20px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      animation-name: animatetop;
+      animation-duration: 0.4s;
+    }
+    @keyframes animatetop {
+      from {top: -300px; opacity: 0}
+      to {top: 0; opacity: 1}
+    }
+    .close {
+      color: rgb(143, 143, 143);
+      float: right;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .close:hover, .close:focus {
+      color: black;
+      text-decoration:none;
+      cursor: pointer;
+    }
+    .topnav a:not(#header-logo) {
+    	color: white !important;
+    }
+    .box {
+      width: 100%;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+      display: table;
+      overflow: hidden;
+    }
+    .inner-box {
+    	display: table-cell;
+    	vertical-align: middle;
+    }
+    .index-btn {
+    	padding: 15px;
+    	border-radius: 40px;
+    	font-family: Helvetica Neue, Arial, sans-serif;
+    	font-size: calc(10pt + 20%);
+    	display: block;
+    	margin: 4vh auto;
+    	width: 20%;
+    }
+    .index-btn:hover {
+    	text-shadow: none;
+    	text-decoration: none;
+    }
+    .green {
+    	background-color: rgb(0, 209, 139);
+    }
+    .green:hover {
+    	background-color: rgb(0, 137, 91);
+    }
+    .white {
+    	background-color: white;
+    	color: black;
+    }
+    .white:hover {
+    	background-color: gray;
+    }
+    .right-arrow {
+    	height: 1em;
+   		filter: invert(100%);
+    	position: relative;
+    	top: 3px;
+    	display: none;
+    }
+
+    .white:hover .right-arrow, .green:hover .right-arrow {
+    	display: inline;
+
+    }
+    .index-img {
+    	width: 70%;
+
+    	border-radius: 20px;
+    }
+    .preview-btn {
+    	width: 40%;
+    	padding: 0;
+    	display: block;
+    	border-radius: 20px;
+    	font-family: Helvetica Neue, Arial, sans-serif;
+    	margin: 20px auto;
+    }
+    .preview-btn:hover {
+    	background-color: white;
+    }
+    .preview-btn:hover .index-img{
+    	animation: expandtofillbox;
+    	animation-duration: 1s;
+    	animation-fill-mode: forwards;
+    	-webkit-animation: expandtofillbox;
+		-webkit-animation-duration: 1s;
+    	-webkit-animation-fill-mode: forwards;
+    }
+    .preview-btn:hover span {
+    	display: none;
+    }
+    @-webkit-keyframes expandtofillbox {
+    from {top: 0px; background-color: yellow;}
+    to {top: 200px;}
+	}
+    @keyframes expandtofillbox {
+    	from {width: 70%;}
+    	to {width:  100%;}
+    }
+    h1, h2, h3 {
+    	font-family: Helvetica, Arial, sans-serif;
+    }
+    h1 {
+      font-size: calc(5vw + 36pt);
+      width: 80%;
+      margin: auto;
+    }
+    h2 {
+      font-size: 50pt;
+
+    }
+    h3 {
+    	font-size: 30pt;
+    }
+    p {
+      font-size: 20pt;
+      width: 70%;
+      font-family: Garamond, serif;
+      margin: auto;
+    }
+    a {
+      color: white;
+    }
+    a:hover {
+      color: white;
+      cursor: pointer;
+      text-shadow: 2px 2px 2px black;
+    }
+    #hero-vid-container {
+    	width: 100%;
+    	height: 100%;
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	overflow: hidden;
+    }
+    #hero-vid {
+      margin: auto;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    #mobile-hero {
+      display: none;
+    }
+    #one {
+
+      background-color: rgb(0, 0, 0, 0.5);
+      color: white;
+    }
+    #two {
+	  height: 50%;
+      background-color:black;
+      background-size: auto 100%;
+      color: white;
+    }
+    #three {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.75);
+    }
+    #four {
+    	background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+    }
+    @media only screen and (max-width: 1125px) {
+      #left-box, #one, #two, #three, #four{
+        width: 100%;
+        /*height: 40vh;*/
+        padding: none;
+      }/*
+      #two {
+        top: 42vh;
+      }
+      #three {
+        top: 84vh;
+      }
+      #four {
+        top: 126vh;
+      }*/
+      #right-box {
+        display: none;
+      }
+      #hero-vid {
+      	height: 100%;
+      	width: auto;
+      }
+      body {
+        text-align: center;
+      }
+      .box, .divided-box {
+        padding: none;
+      }
+      p, h1 {
+        margin: auto;
+      }
+      h1 {
+        margin-top: 50px;
+
+      }
+      .bar1, .bar2, .bar3 {
+        background-color: white !important;
+      }
+      .topnav.responsive .menu-icon .bar1, .topnav.responsive .menu-icon .bar2, .topnav.responsive .menu-icon .bar3 {
+        background-color: white;
+      }
+    }
+    @media only screen and (max-width: 600px) {
+      #hero-vid {
+        display: none;
+      }
+      #mobile-hero {
+        position: absolute;
+        display: block;
+        width: 100vw;
+      }
+      h1 {
+        margin-top: 25%;
+      }
+      h1, h2 {
+        width: 100%;
+      }
+      #one {
+        height: 80%;
+      }
+    }
+    </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110049631-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110049631-2');
+  </script>
+
+</head>
+
+<body onload = "checkCookie()">
+	<div id="container">
+      <!--<?php include 'header.php';?>-->
+      <div id="hero-vid-container">
+      <video autoplay muted loop id="hero-vid">
+        <source src="sources/Kitchen - 3510.mp4" type="video/mp4">
+      </video>
+      <img id="mobile-hero" src="sources/Mobile Hero.jpg"/>
+
+      </div>
+
+      <div class="box"  id="one">
+      <div class="inner-box">
+        <div>
+          <h1>REDEFINE YOUR TABLE</h1>
+          <p>Cutting-edge. Convenient. Canonical.</p>
+        </div>
+        <br>
+        <br>
+    <a id="anchor" onclick="smoothScroll(document.getElementById('anchor'))" class="index-btn white">About us</a>
+       </div>
+      </div>
+
+  <div class="box" id="two">
+  <div class="inner-box">
+    <h2>ABOUT</h2>
+    <p>Verdant life is the cutting-edge of health software. We combine USDA data with statistical analysis to provide the best possible experience.</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!--<a href="register.php" class="index-btn green">Sign up<img src="sources/right-arrow.png" alt="go to nutrition calculator" class="right-arrow"></a>-->
+      <!--<a href="nutrition-calculator.php" class="index-btn white">Try out our software<img src="sources/right-arrow.png" alt="go to nutrition calculator" class="right-arrow"</a>-->
+    </div>
+  </div>
+
+  <div class="box" id="three">
+  <div class="inner-box">
+    <h3>A seamless experience</h3>
+    <p>To use the nutrition calculator, simply type the name of the food into the
+       searchbar and press enter. Click the desired item, and adjust the amount of
+       servings or serving size as needed. Try it now: </p>
+
+    <a href="nutrition-calculator.html" class="index-btn preview-btn white"><img class="index-img" title="Nutrition Calculator" alt="nutrition calculator screenshot" src="sources/Blurred Nutrition Calc Screenshot.jpg"></a>
+    </div>
+  </div>
+
+  <div class="box" id="four">
+  <div class="inner-box">
+    <h3>We deal with the data so you don't have to</h3>
+    <p>Once you create an account, your nutrition information will be graphed in your dashboard so you can track your progress over time.</p>
+      <a href="register.php" class="index-btn green">Create an account for free <img src="sources/right-arrow.png" alt="go to nutrition calculator" class="right-arrow"></a>
+    </div>
+  </div>
+
+  <div id="development-popup" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Dear valued guest:</h3>
+      <p style="font-size: 14px;">Thank you for visiting verdantlife.org. This website is currently in
+      early stages of development, so some features may not be fully completed.
+    However, we encourage you to check out some of the available tools. This site is being
+     continuously updated, so come back
+   soon to see the changes we've made.</p>
+    </div>
+  </div>
+
+
+  <script title="popup">
+
+    //Popup/modal
+    var modal = document.getElementById('development-popup');
+    var span = document.getElementsByClassName('close')[0];
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if(event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    function cookieExists(cname) {
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i < ca.length; i++) {
+        if(ca[i].indexOf(cname) != -1) {
+          return true;
+        }
+      }
+      return false;
+    }
+    function setCookie(cname, cvalue, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+      var expires = "expires="+ d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+    function checkCookie()
+    {
+      if(!cookieExists("Visited")) {
+        modal.style.display = "block";
+        setCookie("Visited", "yes", 365);
+      }
+    }
+  </script>
+	<script title="autoscroll">
+	window.smoothScroll = function(target) {
+    var scrollContainer = target;
+    do { //find scroll container
+        scrollContainer = scrollContainer.parentNode;
+        if (!scrollContainer) return;
+        scrollContainer.scrollTop += 1;
+    } while (scrollContainer.scrollTop == 0);
+
+    var targetY = 0;
+    do { //find the top of target relatively to the container
+        if (target == scrollContainer) break;
+        targetY += target.offsetTop;
+    } while (target = target.offsetParent);
+
+    scroll = function(c, a, b, i) {
+        i++; if (i > 50) return;
+        c.scrollTop = a + (b - a) / 50 * i;
+        setTimeout(function(){ scroll(c, a, b, i); }, 20);
+    }
+    // start scrolling
+    scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+    }
+	</script>
+	<!--<?php include 'footer.php' ?>-->
+	</div>
+</body>
+</html>
