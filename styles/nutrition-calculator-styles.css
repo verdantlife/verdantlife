@@ -1,0 +1,294 @@
+/*Styles for the nutrition calculator page*/
+
+
+/*The main containing div for the app*/
+#nutrition-calc {
+  width: 90%;
+  margin: auto;
+  position: relative;
+  top: 50px;
+  margin-bottom: 100px;
+}
+#nutrition-calc div, .search-bar *, nutrition-calc input:not([type=number]) {
+	border-radius: 10px;
+}
+
+/*applies to table when search is currently taking place*/
+.active {
+  table-layout: fixed;
+  margin: auto; /*centers the table*/
+  width: calc(69% + 20px); /*width same as searchbar + padding*/
+  background-color: white;
+  position: relative;
+  box-shadow: -2px 2px 5px black;
+  z-index: 90;
+}
+.active tbody {
+  padding: 10px;
+  background-color: white;
+  margin: auto; /*centers the table*/
+  max-height: 40vh;
+  display: block;
+  overflow-y: scroll; /*allow for scrolling to see more results*/
+}
+/*table row*/
+.search-item {
+
+}
+.search-item td{
+  padding: 5px;
+  margin: 5px;
+}
+.active tbody tr:hover {
+  background-color: rgba(177, 177, 177, 0.5);
+}
+
+/*search bar*/
+.search-bar {
+  width: 100%;
+  margin-top: 10vh;
+  height: 15vh;
+}
+/*text part of search bar*/
+#search-input {
+  display: block;
+  margin: auto;
+  margin-bottom: 0px;
+  width: 69%;
+  font-size: 1.5em;
+  border: 2px solid black;
+  background-color: white;
+  padding: 10px;
+  font-family: Trebuchet MS, Helvetica, Arial, sans-serif;
+}
+/*Search button
+input[type=submit] {
+  height: 1.8em;
+  position: relative;
+  top: -5.7%;
+  left: -.7%;
+  width: 29%;
+  font-size: 2em;
+  border: 2px solid black;
+  background-color: rgba(15, 110, 1, 0.5);
+  color: white;
+}*/
+
+
+
+ /*the logo above the search bar*/
+ #main-logo {
+   width: 40vw;
+   z-index: 50;
+   position: absolute;
+   top: 15vh;
+   margin-left: 30vw;
+ }
+
+/*nutrition table*/
+.left-align {
+  text-align: left;
+}
+td.right-align {
+  text-align: right;
+  margin: 0;
+}
+.left-indent {
+  text-indent: 20px;
+}
+.section-header {
+  font-weight: bold;
+}
+#nutrition-table {
+  width: 45%;
+  min-height: 460px;
+
+}
+.traditional {
+	margin-left: 15%;
+}
+.traditional table {
+	border-radius: 0;
+
+}
+.traditional .nutrition-top {
+  font-size: 25px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.traditional .nutrition-body{
+  border-top: 3px solid black;
+}
+.traditional .nutrition-footer {
+  border-top: 3px solid black;
+}
+.traditional .daily-value-note {
+  border-top: 1px solid black;
+  font-size: 10px;
+}
+#toggle-rendering {
+  font-size: 9pt;
+}
+
+
+/*items selected by user*/
+#item-container {
+  float: right;
+  display: inline-block;
+  width: 45vw;
+  height: 430px;
+  padding: 10px;
+  background-color: rgb(217, 217, 217);
+  overflow-y: scroll;
+
+}
+#item-container h3 {
+  font-size: 20pt;
+  padding-left: 20px;
+}
+#item-container table {
+  width: 100%;
+  font-size: 14pt;
+  table-layout: fixed;
+}
+.item {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/*the image of an x in the right*/
+.remove-icon {
+  width: 2vw;
+  float: right;
+}
+.measure, .item-name {
+  text-decoration: underline;
+}
+/*the down arrow for the dropdown menu*/
+.down-arrow {
+  background-image: url('sources/down-arrow.jpg');
+  background: no-repeat center center;
+  width: 10px;
+}
+.measure-choices {
+  background: none;
+  border: none;
+  font-size: 14pt;
+  font-family: Trebuchet MS, Helvetica, Arial, sans-serif;
+}
+h1 {
+  text-align: center;
+  margin-top: 50px
+}
+#nutrition-buttons button {
+  background-color: rgb(0, 173, 167);
+  padding: 10px;
+}
+#nutrition-buttons button:hover {
+  background-color: rgb(0, 144, 104);
+  cursor: pointer;
+}
+#nutrition-buttons .right {
+	display: inline-block;
+	float: right;
+}
+#nutrition-buttons .left {
+	display: inline-block;
+
+}
+.pdf-button {
+	display: block;
+	clear: both;
+	margin-bottom: 40px;
+	border: 1px solid black;
+	background-color: white;
+	padding: 10px;
+	border-radius: 15px;
+	float: right;
+}
+
+@media screen and (max-width: 1020px) {
+  #item-container, #search-input {
+    float: none;
+    margin-top: 10%;
+    width: 100%;
+  }
+  #search-input {
+    float: left;
+  }
+  .active {
+    float: left;
+    width: 105%;
+  }
+  #nutrition-table {
+  	width: 100%;
+  }
+  #nutrition-buttons .right, #nutrition-buttons .left, #nutrition-buttons .pdf-button {
+  	text-align: center;
+  	display: block;
+  	border: none;
+  	float: none;
+  	margin: 10px auto;
+  }
+
+}
+/* Optimizing for mobile devices*/
+@media screen and (max-width: 600px) {
+	.traditional {
+		margin-left: 0;
+	}
+  #item-container, #search-input {
+    float: none;
+    margin-top: 10%;
+    width: 100%;
+  }
+  #search-input {
+    float: left;
+  }
+  .active {
+    float: left;
+    width: 105%;
+  }
+}
+
+/*format for printing nutrition info*/
+.show-on-print {
+	visibility: hidden;
+	max-height: 0;
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #item-container *, #nutrition-table *, #nutrition-table {
+    visibility: visible;
+  }
+  #item-container .remove-icon {
+    display: none;
+  }
+  #item-container {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 450px;
+  }
+  #nutrition-table {
+  	position: absolute;
+  	top: -100px;
+  }
+  .traditional {
+  	margin-left: 0;
+  }
+  #ingredients-list {
+  	visibility:  visible;
+  	float: right;
+  	position: absolute;
+  	left: 320px;
+  	top: 0;
+  }
+  .show-on-print {
+  	position: absolute;
+  	top: 400px;
+  	visibility: visible;
+  }
+}
