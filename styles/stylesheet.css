@@ -1,0 +1,66 @@
+html, body {
+  font-family: Trebuchet MS, Helvetica Neue, Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+/*Formatting for website*/
+#container {
+	min-height: 100%;
+}
+a {
+  color: rgb(0, 195, 166);
+  text-decoration: none;
+  font-weight: bold;
+}
+a:hover {
+  color: rgb(0, 75, 52);
+  text-decoration: underline;
+  text-shadow: none;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: Helvetiva Neue, Arial, sans-serif;
+}
+p {
+	font-family: Garamond, serif;
+}
+
+
+
+/*Scrollbar - not supported in Firefox or IE/Edge*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(136, 136, 136, 0.64);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(136, 136, 136);
+}
+
+.v2 {
+border-left: 300px solid #EAFAF1;
+height: 100vh;
+position: absolute;
+left: 0%;
+top: 0;
+z-index: -1;
+}
+.a {
+height: 600px;
+transform: rotate(90deg);
+background-position: right 50px center;
+}
