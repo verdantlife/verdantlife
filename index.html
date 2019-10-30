@@ -123,27 +123,17 @@
     	font-family: Helvetica Neue, Arial, sans-serif;
     	margin: 20px auto;
     }
+    .preview-btn .index-img {
+        transition: width 1s;
+    }
     .preview-btn:hover {
     	background-color: white;
     }
     .preview-btn:hover .index-img{
-    	animation: expandtofillbox;
-    	animation-duration: 1s;
-    	animation-fill-mode: forwards;
-    	-webkit-animation: expandtofillbox;
-		-webkit-animation-duration: 1s;
-    	-webkit-animation-fill-mode: forwards;
+    	width: 100%;
     }
     .preview-btn:hover span {
     	display: none;
-    }
-    @-webkit-keyframes expandtofillbox {
-    from {top: 0px; background-color: yellow;}
-    to {top: 200px;}
-	}
-    @keyframes expandtofillbox {
-    	from {width: 70%;}
-    	to {width:  100%;}
     }
     h1, h2, h3 {
     	font-family: Helvetica, Arial, sans-serif;
