@@ -1,3 +1,7 @@
+---
+#header filler
+---
+
 <!--<?php
   if(!isset($_SESSION)) {
   	session_start();
@@ -275,7 +279,10 @@
 </head>
 
 <body onload = "checkCookie()">
-	<div id="container">
+
+    {% include header.html %}
+
+<div id="container">
       <!--<?php include 'header.php';?>-->
       <div id="hero-vid-container">
       <video autoplay muted loop id="hero-vid">
